@@ -7,7 +7,7 @@ use iprange::IpRange;
 use ipnet::Ipv4Net;
 
 use std::fs;
-use std::net::{SocketAddrV4, Ipv4Addr};
+use std::net::{Ipv4Addr, SocketAddrV4};
 
 use lazy_static::lazy_static;
 use once_cell::sync::OnceCell;
@@ -16,7 +16,7 @@ pub static CONF_PATH: OnceCell<String> = OnceCell::new();
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct ProxyConfig {
-    pub proxy_addr: SocketAddrV4,
+    pub proxy_addr: String,
     pub proxy_type: String,
     pub username: String,
     pub password: String,
@@ -72,7 +72,7 @@ pub fn get_proxy_for_addr(addr: SocketAddrV4) -> Option<ProxyConfig> {
     for (_, host) in GNIREHTET_PROXY_CONFIG.special_proxy_config.hosts.iter().enumerate() {
         if host == addr.ip() {
             return Some(ProxyConfig {
-                proxy_addr: GNIREHTET_PROXY_CONFIG.special_proxy_config.proxy.proxy_addr,
+                proxy_addr: GNIREHTET_PROXY_CONFIG.special_proxy_config.proxy.proxy_addr.clone(),
                 proxy_type: GNIREHTET_PROXY_CONFIG.special_proxy_config.proxy.proxy_type.clone(),
                 username: GNIREHTET_PROXY_CONFIG.special_proxy_config.proxy.username.clone(),
                 password: GNIREHTET_PROXY_CONFIG.special_proxy_config.proxy.password.clone()
@@ -82,7 +82,7 @@ pub fn get_proxy_for_addr(addr: SocketAddrV4) -> Option<ProxyConfig> {
 
     // not in lan_host neither proxies.hosts, use default proxy
     Some(ProxyConfig {
-        proxy_addr: GNIREHTET_PROXY_CONFIG.default_proxy_config.proxy.proxy_addr,
+        proxy_addr: GNIREHTET_PROXY_CONFIG.default_proxy_config.proxy.proxy_addr.clone(),
         proxy_type: GNIREHTET_PROXY_CONFIG.default_proxy_config.proxy.proxy_type.clone(),
         username: GNIREHTET_PROXY_CONFIG.default_proxy_config.proxy.username.clone(),
         password: GNIREHTET_PROXY_CONFIG.default_proxy_config.proxy.password.clone()
