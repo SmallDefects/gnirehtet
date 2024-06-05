@@ -15,8 +15,8 @@
  */
 
 pub use self::relay::Relay;
-pub use self::socks5_protocol::{Socks5State, Authentication};
-pub use self::proxy_config::GNIREHTET_PROXY_CONFIG;
+// pub use self::socks5_protocol::{Socks5State, Authentication};
+// pub use self::proxy_config::GNIREHTET_PROXY_CONFIG;
 pub use self::proxy_config::CONF_PATH;
 
 pub mod byte_buffer;

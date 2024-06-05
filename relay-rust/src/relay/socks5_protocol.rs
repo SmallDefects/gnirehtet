@@ -12,12 +12,12 @@ use std::net::{SocketAddr, SocketAddrV4, Ipv4Addr};
 use mio::net::TcpStream;
 use byteorder::{ReadBytesExt, BigEndian};
 
-pub use self::consts::{
-    SOCKS5_AUTH_METHOD_GSSAPI,
-    SOCKS5_AUTH_METHOD_NONE,
-    SOCKS5_AUTH_METHOD_NOT_ACCEPTABLE,
-    SOCKS5_AUTH_METHOD_PASSWORD,
-};
+// pub use self::consts::{
+//     SOCKS5_AUTH_METHOD_GSSAPI,
+//     SOCKS5_AUTH_METHOD_NONE,
+//     SOCKS5_AUTH_METHOD_NOT_ACCEPTABLE,
+//     SOCKS5_AUTH_METHOD_PASSWORD,
+// };
 
 pub const MAX_ADDR_LEN: usize = 260;
 

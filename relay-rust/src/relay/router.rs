@@ -56,7 +56,7 @@ impl Router {
         ipv4_packet: &Ipv4Packet,
     ) {
 
-        let (ipv4_header_data, _transport_header_data) = ipv4_packet.headers_data();
+        let (_, _transport_header_data) = ipv4_packet.headers_data();
 
         //TODO: add proxy check
 //         if ipv4_header_data.protocol() == Protocol::Udp {
