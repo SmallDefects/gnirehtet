@@ -29,6 +29,9 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+task debugApp(dependsOn: [':app:assembleDebug'])
+task releaseApp(dependsOn: [':app:assembleRelease'])
+
 task debugJava(dependsOn: [':app:assembleDebug', ':relay-java:assembleDebug'])
 task releaseJava(dependsOn: [':app:assembleRelease', ':relay-java:assembleRelease'])
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.VpnService;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * This (invisible) activity receives the {@link #ACTION_GNIREHTET_START START} and
@@ -27,6 +28,7 @@ public class GnirehtetActivity extends Activity {
     private static final int VPN_REQUEST_CODE = 0;
 
     private VpnConfiguration requestedConfig;
+    private static boolean toggleState = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,21 @@ public class GnirehtetActivity extends Activity {
         String action = intent.getAction();
         Log.d(TAG, "Received request " + action);
         boolean finish = true;
-        if (ACTION_GNIREHTET_START.equals(action)) {
+
+        if (ACTION_GNIREHTET_START.equals(action) || !toggleState) {
             VpnConfiguration config = createConfig(intent);
             finish = startGnirehtet(config);
-        } else if (ACTION_GNIREHTET_STOP.equals(action)) {
+
+        } else {
             stopGnirehtet();
         }
+        toggleState = !toggleState;
+        Toast.makeText(
+                        GnirehtetActivity.this,
+                        toggleState ? "启动成功" : "停止成功",
+                        Toast.LENGTH_LONG
+                )
+                .show();
 
         if (finish) {
             finish();
