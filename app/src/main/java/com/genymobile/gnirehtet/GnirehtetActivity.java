@@ -52,7 +52,7 @@ public class GnirehtetActivity extends Activity {
         Toast.makeText(
                         GnirehtetActivity.this,
                         toggleState ? "启动成功" : "停止成功",
-                        Toast.LENGTH_LONG
+                        Toast.LENGTH_SHORT
                 )
                 .show();
 
