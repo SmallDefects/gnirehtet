@@ -62,7 +62,7 @@ impl TunnelServer {
     }
 
     fn start_socket(port: u16) -> io::Result<TcpListener> {
-        let localhost = Ipv4Addr::new(127, 0, 0, 1).into();
+        let localhost = Ipv4Addr::new(0, 0, 0, 0).into();
         let addr = SocketAddr::new(localhost, port);
         let server = TcpListener::bind(&addr)?;
         Ok(server)
