@@ -44,14 +44,15 @@ public class GnirehtetActivity extends Activity {
         if (ACTION_GNIREHTET_START.equals(action) || !toggleState) {
             VpnConfiguration config = createConfig(intent);
             finish = startGnirehtet(config);
-
+            toggleState = true;
         } else {
             stopGnirehtet();
+            toggleState = false;
         }
-        toggleState = !toggleState;
+
         Toast.makeText(
                         GnirehtetActivity.this,
-                        toggleState ? "启动成功" : "停止成功",
+                        toggleState ? "Gnirehtet启动成功" : "Gnirehtet停止成功",
                         Toast.LENGTH_SHORT
                 )
                 .show();
